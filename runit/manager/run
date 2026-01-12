@@ -1,0 +1,29 @@
+#!/bin/sh
+# Manager service run script for runit
+exec 2>&1
+
+echo "Starting Gridiron Manager..."
+
+# Wait for data directories to exist
+while [ ! -d /data/bundles ]; do
+  echo "Waiting for data directories..."
+  sleep 0.5
+done
+
+# Set environment variables for manager
+export MANAGER_PORT=8081
+export BUNDLES_DIR=/data/bundles
+export MANAGER_STATE_DIR=/data/manager
+export WORKERD_CONFIG_PATH=/opt/gridiron/config/workerd.capnp
+export WORKERD_TEMPLATE_PATH=/opt/gridiron/config/workerd-template.capnp
+export WORKERD_PID_FILE=/run/workerd.pid
+export RESTATE_ADMIN_URL=http://localhost:9070
+export WORKERD_SOCKET_PATH=/run/workerd.sock
+
+# Create PID file directory
+mkdir -p /run
+
+cd /opt/gridiron
+
+exec chpst -u gridiron:gridiron \
+  /usr/local/bin/manager

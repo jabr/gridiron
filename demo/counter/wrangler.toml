@@ -1,0 +1,24 @@
+# Gridiron Counter Service - Wrangler Configuration
+
+name = "gridiron-counter"
+main = "./src/index.ts"
+
+# Enable NodeJS compatibility (used by the SDK for the Node Buffer API)
+compatibility_date = "2025-02-13"
+compatibility_flags = ["nodejs_compat", "nodejs_compat_populate_process_env"]
+
+# Build output directory
+out_dir = "./dist"
+
+# Workers settings
+[build]
+command = ""
+
+# Local dev settings (not used in production, but good for reference)
+[dev]
+port = 9080
+
+# Environment variables (if needed)
+[vars]
+ENVIRONMENT = "production"
+VERSION = "1.0.0"

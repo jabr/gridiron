@@ -1,0 +1,5 @@
+# Demo build artifacts
+dist/
+.wrangler/
+node_modules/
+*.log

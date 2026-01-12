@@ -1,0 +1,15 @@
+#!/bin/sh
+# Restate service run script for runit
+
+# Redirect stderr to stdout so runit can log everything
+exec 2>&1
+
+echo "Starting Restate server..."
+
+# Change to data directory so Restate creates files in the right place
+cd /data
+
+# Run as gridiron user with chpst
+exec chpst -u gridiron:gridiron \
+  /usr/local/bin/restate-server \
+  --config-file /opt/gridiron/config/restate.toml

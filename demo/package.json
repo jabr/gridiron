@@ -1,0 +1,12 @@
+{
+  "name": "gridiron-demo-service",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@restatedev/restate-sdk-cloudflare-workers": "^1.10.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.3.0"
+  }
+}

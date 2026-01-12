@@ -1,0 +1,15 @@
+#!/bin/sh
+# workerd service run script for runit
+
+# Redirect stderr to stdout so runit can log everything
+exec 2>&1
+
+echo "Starting workerd with watch mode..."
+
+# Change to data directory
+cd /data
+
+# Run as gridiron user with chpst
+# --watch automatically reloads when config changes
+exec chpst -u gridiron:gridiron \
+  /usr/local/bin/workerd serve --watch /opt/gridiron/config/workerd.capnp

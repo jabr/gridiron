@@ -1,0 +1,14 @@
+name: manager
+version: 0.1.0
+
+authors:
+  - Gridiron Team
+
+license: MIT
+
+# No external dependencies - using only Crystal stdlib
+dependencies: {}
+
+targets:
+  manager:
+    main: src/manager.cr

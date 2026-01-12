@@ -1,0 +1,47 @@
+# Gridiron Restate Configuration
+
+# Listen mode - use TCP only for external access
+# Options: "tcp", "unix", "all"
+listen-mode = "tcp"
+
+# Meta information
+[meta]
+cluster_name = "gridiron"
+
+# Roles - this node will run all roles
+roles = ["worker", "admin", "metadata-store"]
+
+# Server configuration
+[worker]
+# Internal fabric - using Restate default port
+bind-address = "0.0.0.0:5122"
+
+# HTTP ingress server bind address (separate from worker)
+ingress-bind-address = "0.0.0.0:8080"
+
+# Number of worker threads (adjust based on your hardware)
+num_workers = 4
+
+# Admin API configuration - using Restate default port
+[admin]
+bind-address = "0.0.0.0:9070"
+
+# Ingress (HTTP API) configuration - using Restate default port
+[ingress]
+bind-address = "0.0.0.0:8080"
+
+# Query engine (optional, for debugging)
+query_engine = true
+
+# Storage configuration
+[worker.storage]
+# Use RocksDB for local state storage
+data_dir = "/data/restate"
+
+# Logging configuration
+[log]
+# Options: error, warn, info, debug, trace
+level = "info"
+
+# JSON format for better parsing
+format = "json"

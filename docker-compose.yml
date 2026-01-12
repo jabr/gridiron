@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  gridiron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gridiron:latest
+    container_name: gridiron
+    ports:
+      # Restate ingress API
+      - "9070:9070"
+      # Restate admin API
+      - "9071:9071"
+    volumes:
+      # Persist Restate data
+      - gridiron-data:/data
+    environment:
+      # Optional: override log level
+      - LOG_LEVEL=info
+    healthcheck:
+      test: ["/opt/gridiron/scripts/health-check.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  gridiron-data:
+    driver: local
